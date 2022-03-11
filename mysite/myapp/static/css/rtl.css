@@ -1,0 +1,50 @@
+body {
+    direction: rtl !important;
+    text-align: rtl !important;
+    text-align: right !important;
+    
+}
+ .pager-my-design {
+     float: left !important;
+
+}
+
+.mycat {
+
+    direction: rtl !important;
+    text-align: rtl !important;
+    text-align: right !important;
+}
+
+ .pt {
+    display: grid !important;
+  grid-template-columns: auto auto auto;
+} 
+
+
+ul {
+    list-style: none;
+  }
+  
+.mam li:before {
+    content: '✓';
+  }
+  
+  #comment-box {
+    background-color: white !important;
+    position: relative !important;
+    padding: 20px !important;
+    color: black;
+  }
+  
+  #comment-box::after {
+    content: "";
+    position: absolute;
+    height: 25px;
+    width: 25px;
+    bottom: -25px;
+    left: 90%;
+    background-color: grey;
+    clip-path: polygon(0 0, 100% 0, 100% 100%);
+  }
+  

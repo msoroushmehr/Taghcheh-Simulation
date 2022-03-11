@@ -1,0 +1,143 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>{{book.title}}</title>
+        <link rel="icon" type="image/x-icon" href="{% static "assets/favicon.ico" %}" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{% static "css/styles.css"%}" rel="stylesheet" />
+        <link href="{% static "css/rtl.css"%}"  rel="stylesheet" />
+
+    </head>
+    <body>
+        <!-- Navigation-->
+
+        <nav class="navbar navbar-expand-lg navbar-light" style="text-align:right; color:black"  id="mainNav">
+           
+
+                
+                <div class="collapse navbar-collapse"  style="text-align:right; color:black" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto py-4 py-lg-0" style="color:black !important">
+                        <li class="nav-item" style="color:black !important"><a class="nav-link px-lg-3 py-3 py-lg-4" style="color:black;" href="index.html">جستجو </a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" style="color:black;"" href="{% url 'myapp:categorychild' 'audio' %}">صوتی</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" style="color:black;" href="post.html">دسته بندی</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" style="color:black;" href="contact.html">طاقچه</a></li>
+
+                    </ul>
+                </div>
+                
+      
+        
+                </div>
+            </nav>
+        <!-- Page Header-->
+        <header class="masthead" style="color:black; background-color: green">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="site-heading">
+                            <h3>لدت خواندن و شنیدن کتابها</h3>
+                            <span class="subheading">دانلود قانونی بیش از ۹۰۰۰۰ کتاب متنی و صوتی</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Main Content-->
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <!-- Post preview-->
+                    <div class="post-preview">
+                        <a href="#"> </a>
+                            <img src="{{book.image.url}}">
+                            <h2 class="post-title">{{book.title}}</h2>
+                            <div>{{book.hits}} </div>
+                            {% if book.pric == 0 %}
+                            <h3 style="text-align:left" ><button type="button" class="btn btn-success">رایگان</button>
+                            </h3>
+                            {% else %}
+
+                            <h3 style="text-align:left"> قیمت:{{book.pprice}} تومان</h3>
+                    
+                            <h3 style="text-align:left"><button type="button" class="btn btn-success"><a href="#">خرید</a></button></h3>
+                            <h3 style="text-align:left"><button type="button" class="btn btn-success"><a href="{% url 'myapp:reinfinity' %}">دریافت از طاقچه بی نهایت</a></button></h3>
+
+                            {% endif %}
+                            {% if book.disscount > 0 %}
+                           درصد تخفیف {{book.disscount }}
+                            {% endif %}
+                            {% if book.subtitle %}
+                            <h3 class="post-subtitle">{{book.subtitle}}</h3>
+                            {% endif %}
+                            <p class="post-meta">
+                                نویسنده:                           {{book.author}}
+                                                       </p>
+                            <p  style="text-align:justify">{{book.pdescription|linebreaks}}</hp>
+                                <hr>
+
+                                   </div>
+                                   {% if book.comments.count == 0 %}
+                                   <small>تاکنون نظری ارسال نشده است.</small>
+                                   {% else %}
+                                   <small>{{ book.comments.count }} نظر </small>
+                                       {% endif %}
+                                    &nbsp;  <a href="{% url 'myapp:old_comment'  book.slug %}"><small>مشاهده  نظرات</a></small>
+                                   <small>  <a href="{% url 'myapp:new_comment'  book.slug %}">ارسال نظر</a></small>
+           
+                                    <!-- Divider-->
+                    <!-- Pager-->
+                                   </div>
+            </div>
+        </div>
+        <!-- Footer-->
+        <footer class="border-top">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <ul class="list-inline text-center">
+                            <li class="list-inline-item">
+                                <a href="#!">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#!">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#!">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="small text-center text-muted fst-italic">Copyright &copy; Your Website 2021</div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="{% static "js/scripts.js"%}"></script>
+    </body>
+</html>

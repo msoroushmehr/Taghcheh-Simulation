@@ -1,0 +1,78 @@
+<div class="col-md-8 card mb-4  mt-3 ">
+    <div class="card-body">
+      <!-- comments -->
+
+      <div class="col-md-8 card mb-4  mt-3" style="text-align:right">
+        <div class="card-body">
+          <!-- comments -->
+          <h2 > {{ s }}
+            :تعداد نظرات
+         </h2>
+  {% for book in booki %}
+          {% for comment in commits %}
+    {% if comment.book == book %}
+         
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" >
+    <style>
+    .container {
+      direction: rtl !important;
+      text-align: ltl !important;
+      border: 2px solid #ccc;
+      background-color: #eee;
+      border-radius: 500px;
+      padding: 16px;
+      margin: 16px;
+      width:90%;
+      height:40px;
+      position: -webkit-sticky;
+      position: sticky;
+      top: 20px;
+    }
+    
+    .container::after {
+      content: "";
+      clear: both;
+      display: table;
+      align: right
+
+    }
+    
+    .container img {
+      float: none;
+      margin-right: 200px;
+      border-radius: 100%;
+    }
+    
+    .container span {
+      font-size: 20px;
+      margin-left:500px;
+    }
+    
+    @media (max-width: 400px) {
+      .container {
+          text-align: center;
+      }
+      .container img {
+          margin: auto;
+          float: none;
+          display: block;
+      }
+    }
+    </style>
+    <small>{{comment.name}} :{{comment.jpublish}} </small>
+    <div class="container  >
+      ">
+
+     
+      
+     {{comment.body}}
+
+    </div>
+
+          {% endif %}
+
+          {% endfor %}
+          {% endfor %}
+        </div>
+      </div>

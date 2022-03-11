@@ -1,0 +1,29 @@
+[33mcommit 712762839324b77829c57ef991dc4f3a1c4681d8[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: Maedeh <m.soroushmehr@gmail.com>
+Date:   Sun Mar 6 16:44:35 2022 +0330
+
+    Publication is added to models
+
+[33mcommit 6853d0688c181d3566886b6ab15fcc808b6fa51c[m
+Author: Maedeh <m.soroushmehr@gmail.com>
+Date:   Sun Mar 6 13:12:07 2022 +0330
+
+    Clean blog is add. Module Book is added
+
+[33mcommit 2182869ffa9f824c9f9302d4deb10fd34b7a851b[m
+Author: Maedeh <m.soroushmehr@gmail.com>
+Date:   Sun Mar 6 10:15:57 2022 +0330
+
+    User is added to the models
+
+[33mcommit 9428dee3740b93024a82e3f346740a5268c6ee2c[m
+Author: Maedeh <m.soroushmehr@gmail.com>
+Date:   Sun Mar 6 09:42:32 2022 +0330
+
+    I see that I can not access the template of taghche with inspect by using a test view
+
+[33mcommit 8ad0aec0190f81ec4bc1b72a4ff8b92ffc4435b2[m
+Author: Maedeh <m.soroushmehr@gmail.com>
+Date:   Fri Mar 4 22:14:14 2022 +0330
+
+    making an invertual space
