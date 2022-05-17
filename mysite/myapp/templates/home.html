@@ -1,11 +1,18 @@
 {% extends "base.html" %}
 {% load static %}
+{% load base_tags %}
+{% block title %}دانلود و خرید کتاب و کتاب صوتی با طاقچه
+<link rel="icon" type="image/x-icon" href="assets/img/l.png">
 
-{% block title %}دانلود و خرید کتاب و کتاب صوتی با طاقچه{% endblock %}
+{% endblock %}
 {% block main %}
                     <!-- Post preview-->
                     <div class="post-preview" >
                         <a href="post.html"></a>
+{% block header %}
+                    {% popular_books %}
+                   
+                    {% hot_books %}
                             {% for book in object_list %}
 
                             <h2 class="post-title">
@@ -13,8 +20,10 @@
                                 <a href="{% url 'myapp:detail' book.slug %}"> </h2>
                                 
                               <h2>  {{book.title}}</a></h2>
+                              <h3>تعداد بازدیدها: {{book.hits.count}} </h3>
+
                             {% if book.subtitle %}
-                            <h4 class="post-subtitle">{{book.subtitle}}</h4>
+                            <h4 class="post-subtitle">{{book.psubtitle}}</h4>
                             {% endif %}
                           <p> {{book.description|truncatewords:40|linebreaks}}</p>
                                                                               
@@ -39,7 +48,7 @@
                         {% endfor %}
                        
                     <!-- Divider-->
-                    
+                 {% endblock %}   
                    
                     {% endblock %}
                    

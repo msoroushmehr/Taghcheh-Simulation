@@ -1,5 +1,8 @@
+from ipaddress import ip_address
 from tabnanny import verbose
-from turtle import update
+from textwrap import dedent
+from tkinter import CASCADE
+from turtle import position, update
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import AbstractUser
@@ -7,16 +10,86 @@ from django.utils.html import format_html
 from jalaliconv.utils import jalali_convertor
 from jalaliconv.utils import numbers_convertor
 from django.db.models import Count
+import random
+from random import randint, randrange
+from django.shortcuts import get_object_or_404
+from datetime import datetime, timedelta
+
+# from mysite.myapp.forms import INFINITY_CHOICES
+
+
 
 class User(AbstractUser):
+    # d1 = datetime.today()-timedelta(days=7)
+    # d2 = datetime.today()-timedelta(days=30)
+    # d3 = datetime.today()-timedelta(days=90)
+    # d4 = datetime.today()-timedelta(days=180)
+    # d5 = datetime.today()-timedelta(days=365)
+    # CHOICES = [(d1, 'یک هفته '),(d2, 'یک ماه'),(d3, ' سه ماه'),(d4,'شش ماه'), (d5, 'یک سال')]
+
+
+    
+    email = models.EmailField(max_length=254)
+    username = models.CharField(max_length=300, unique=True, verbose_name="نام کاربری")
+    mybag = models.BigIntegerField(default=0)
+    special_user = models.DateTimeField(default=timezone.now, verbose_name="عضویت بی نهایت تا" )
+    # def get_object(self, queryset=None):
+    #     obj = get_object_or_404(User, email=self.email)
+    #     return obj
+    
+    def mybags(self):
+        if not self.mybag:
+            return self.mybag
+        else:
+            return 0
+
+        
+    def jspecial_user(self):
+        jalali_convertor(self.special_user)        
+    
+    global mylist 
+    mylist = []
+    def mybooks(self, slug):
+       books = Book.objects.filter(slug=slug) 
+       for book in books:
+           if len(mylist) == 0:
+                mylist.append([book.title,book.slug]) 
+           else:
+               g = 0
+               for i in range(0, len(mylist)):
+                   if mylist[i] != [book.title,book.slug]:
+                       g += 1
+                   if g == len(mylist):
+                    mylist.append([book.title,book.slug]) 
+       return mylist
+   
+#    [[book.title, book.slug] for book in list]
+    
+#     return super().get_username()
+    def __str__(self):
+        return self.username
+    
+    
+               
+    def is_special_user(self):
+        if self.special_user > timezone.now():
+            return True
+        else:
+            return False
+    is_special_user.boolean = True
+    is_special_user.short_description = ' عضو بی نهایت'
+
     class Meta:
         verbose_name = "کاربر"
         verbose_name_plural = "کاربرها"
         
-        
 
 class MyIPAddress(models.Model):
-    ip_address = models.GenericIPAddressField()
+
+    ip_address = models.GenericIPAddressField(verbose_name="آی پی")
+    name = models.CharField(max_length=100)
+    def __str__(self):
+        return self.ip_address
         
 
 class BookManager(models.Manager):
@@ -103,10 +176,11 @@ class Book(models.Model):
     price = models.IntegerField(verbose_name="قیمت")
     disscount = models.BigIntegerField(null=True, blank=True, verbose_name="درصد تخفیف")
     time_disscount = models.DateTimeField(default=timezone.now, verbose_name=" تخفیف تا ")
-    # hits = models.ManyToManyField(IPAddress, blank=True, related_name="hits", verbose_name="بازدیدها")
+    hits = models.ManyToManyField(MyIPAddress, through="BookHit", blank=True, related_name="hits", verbose_name="بازدیدها")
 
-    # def get_client_ip(self, request):
+    # def get_client_ip(self, request)
     #     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    
     #     if x_forwarded_for:
     #         ip = x_forwarded_for.split(',')[0]
     #     else:
@@ -114,9 +188,15 @@ class Book(models.Model):
     #     return ip
 
     #     Bview.objects.get_or_create(user=self.request.user, book=self.book_details)
+    
+    
 
-    def countv(self):
-        return self.hits.all.count()
+    def hits_to_str(self):
+        return ",".join([hits.title for hits in self.hits.all()])
+    
+    
+    def hits_to_list(self):
+        return list(self.hits_to_str().split(","))
     
     
     def category_to_str(self):
@@ -143,10 +223,19 @@ class Book(models.Model):
     def pprice(self):
         
         return numbers_convertor(str(self.price))
+    
+    def psubtitle(self):
+        
+        return numbers_convertor(str(self.subtitle))
 
     def approved_comments(self):
         return self.comments.filter(approved_comment=True)
 
+    
+    
+    
+
+    
     
     objects = BookManager()   
 
@@ -159,7 +248,7 @@ class Comment(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     active = models.BooleanField(default=False)
     parent = models.ForeignKey('self', null=True, blank=True, related_name='replies', on_delete=models.CASCADE)
-
+    
     class Meta:
         ordering = ['created_on']
 
@@ -172,5 +261,72 @@ class Comment(models.Model):
 
 
 
+class BookHit(models.Model):
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    ip_address = models.ForeignKey(MyIPAddress, on_delete=models.CASCADE)
+    created = models.DateTimeField(auto_now_add=True)
+
+ 
+ 
 
     
+    
+    
+class Getpass(User):
+    def getpp(self, email):
+        pass2 = random.randint(1000, 9999)
+        return pass2
+
+
+
+
+    
+    
+    
+    
+    
+    
+    
+# class UserProfile(models.Model):
+# #         #     # puser = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user', null=True)
+#     mybooks = models.ManyToManyField(Book, verbose_name='کتابهای من', related_name='profiles')
+#     mybag = models.CharField(max_length=6, default ='0')    
+#     created = models.DateTimeField(auto_now_add=True)
+    
+    
+#     def jcreated(self):
+#         jalali_convertor(self.created)
+
+
+# class Buy(models.Model):
+    
+#     STATUS_CHOICES =[('a', 'لغو شده'), ('b', 'خریداری شده')]
+#     INFINITY_CHOICESS = [('weak', 'یک هفته ای'), ('onemonth', 'یک ماهه'), ('threemonth', 'سه ماهه'), ('sixmonth', 'شش ماهه'), ('oneyear','یک ساله')]
+        
+#     # created_on = models.DateTimeField(auto_now_add=True)
+
+#     booki = models.ManyToManyField(Book)
+#     # status =  models.CharField(max_length=1, choices=STATUS_CHOICES)
+#     # position = models.IntegerField(default=0)
+#     # # msgbuy = models.CharField(max_length=10, choices=INFINITY_CHOICESS)
+#     user = models.ForeignKey(User,on_delete=models.CASCADE,related_name='buyhistory')
+
+    
+#     # class Meta:
+#     #     ordering = ['created_on']
+
+
+    
+#     # def positions(self):
+#     #     if self.position:
+#     #         return self.position
+#     #     else:
+#     #         return 0
+        
+
+    
+#     # def jtime(self):
+#     #     return jalali_convertor(self.created_on)
+    
+#     # def booki_to_str(self):
+#     #     return ",".join([str(booki) for booki in self.booki.all()])

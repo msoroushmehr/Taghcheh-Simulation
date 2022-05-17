@@ -1,0 +1,71 @@
+{% comment %} {% extends 'mybase.html' %}
+{% block bodye %}
+
+{% autoescape off %}
+<div class="bg-light text-dark">
+<div class="font-weight-bold fs-3">طاقچه ...نزدیک ترین کتابفروشی شهر</div>
+<br>
+<br>
+<div class="fs-5">با سلام و احترام</div>
+<div class="row">
+    <div class="col">
+        <img class="img-fluid" src="Images/l.png">
+    </div>
+        <div class="col">
+            <h5 class= "border p-2 rounded-pill my-4" style=" font-size: 0.9rem; color:white;  background-color:white">
+                <a href="#" class="text-decoration-none color:white text-center" style="text-align:center"> <p style="font-size:14px">نصب  طاقچه</p></a></h5>
+
+        </div>
+<hr class="text-primary width=30%">
+<div class="text-center">
+    <img class="img-fluid" src="https://ci6.googleusercontent.com/proxy/XU_94YHX5DOu6iOBotcbwNbybZvS0pdY9_xL2iaOBQdAjt04-I4F8B4f0bKp5ncvXdUFTqmdyNciOjS20wESAu7c9-i8U8qvaHHZOnlW7aqRbZkYTiqu1b60R2GTwkGGnFEqGIXuZuF1LoHn6Gem=s0-d-e1-ft#https://email-editor-resources.s3.amazonaws.com/images/82617894/Artboard%20%E2%80%93%202.png">
+    <h3> سلام دوست کتابخوانم</h3>
+    <h4>به طاقچه خوش آمدی
+
+    </h4>
+
+<h1>برای ورود به طاقچه از این کد استفاده کن
+
+</h1>
+<div class="p-3 mb-2 mx-5 bg-warning text-dark">nnn</div>
+
+
+<h5>امیدواریم تجربه کتابخوانی خوبی برایت بسازیم
+
+</h5>
+<hr>
+<small class="text-muted lead">اگر این درخواست را ندادی، از این پیام صرف نظر کن
+
+</small>
+</div>
+</div>
+
+{% endautoescape %}
+
+
+{% endblock %} {% endcomment %}
+{% comment %} {% autoescape off %}
+<p>سلام دوست کتابخوانم</p>
+
+<p>به طاقچه خوش آمدی</p>
+
+<p>برای ورود به طاقچه از این کد استفاده کن</p>
+
+{% comment %} {{pass}} {% endcomment %}
+
+{% load i18n %}{% autoescape off %}
+سلام دوست کتابخوانم
+
+به طاقچه خوش آمدی
+
+برای ورود به طاقچه از این کد استفاده کن
+
+
+ {{passs}}
+
+ امیدواریم تجربه کتابخوانی خوبی برایت بسازیم
+
+اگر این درخواست را ندادی، از این پیام صرف نظر کن
+
+
+{% endautoescape %}

@@ -1,0 +1,20 @@
+{%extends 'mybase.html'%}
+{%block alarm %}{% endblock %}
+{% block body %}
+<ul><h1>مدیریت دستگاه‌ها</h1>
+
+<li>می‌توانی با یک حساب کاربری در ۵ دستگاه وارد شوی</li>
+<li>وقتی در یک دستگاه وارد حساب کاربری‌ات بشوی، آن دستگاه به فهرست «دستگاه‌های استفاده‌شده» اضافه می‌شود</li>
+<li>در هر شش ماه می‌توانی ۳ دستگاه اضافه را از فهرست حذف کنی (مثلاً وقتی ۵ دستگاه در فهرست داری و می‌خواهی از دستگاه جدیدی استفاده کنی)</li>
+<li>
+تعداد دفعه‌های مجاز حذف دستگاه:
+۳
+</li>
+<li>دستگاه‌های استفاده شده</li>
+</ul>
+<p>در حال حاضر از دستگاهی استفاده نشده است</p>
+
+<h5 class= "border p-2 rounded-pill my-4 btn-btn-success" style=" font-size: 0.9rem; color:white;  background-color:white">
+    <a href="{% url 'myapp:nasb' %}" class="text-decoration-none color:white text-center" style="text-align:center"> <p style="font-size:14px">نصب  طاقچه</p></a></h5>
+    {%endblock%}
+    {% block footer %}{% endblock %}

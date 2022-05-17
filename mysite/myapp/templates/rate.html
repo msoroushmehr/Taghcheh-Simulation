@@ -1,0 +1,13 @@
+<form method="POST" action="" role="form" class="col s12">
+    {% csrf_token %}
+   <div class="input-field col s12">
+      {{ form.rate }}
+  </div>
+  <div class="input-field col s12">
+      {{ form.text }}
+    <label for="textarea1">Opinion</label>
+  </div>
+
+  <button type="submit" name="action" class="waves-effect waves-light btn"><i class="material-icons left">star</i>Rate</button>
+</form>
+

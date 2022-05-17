@@ -1,0 +1,50 @@
+{% load base_tags %}
+{% load ratings %}
+
+{% load static %}
+<!doctype html>
+
+<html lang="fa" dir="rtl">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.rtl.min.css" integrity="sha384-+qdLaIRZfNu4cVPK/PxJJEy0B0f3Ugv8i482AKY7gwXwhaCroABd086ybrVKTa0q" crossorigin="anonymous">
+    <title> 
+      دانلود و خرید کتاب صوتی با طاقچه
+    </title>
+      <link rel="shortcut icon" type="image/png" href="{% static "assets/img/l.png" %}">
+
+      <link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
+      <script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
+                  
+
+    </head>
+
+
+    <body>
+
+        
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+
+    <div class="container py-4" style="text-align:center">
+<div class="row">
+
+<div class="col text-center text-success">
+  <div> کاربر عزیز</div>
+  <div class="py-4">
+  </div>
+  <div>
+    شما تا تاریخ 
+{{mytime}}
+مشترک بی نهایت طاقچه هستید.
+  </div>
+  <div><a href="{% url 'myapp:api' %}">بازگشت به صفحه اصلی</a></div>
+    </div>
+</div>
+
+</body>
+</html>

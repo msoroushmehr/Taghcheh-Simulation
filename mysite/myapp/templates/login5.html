@@ -1,0 +1,179 @@
+
+
+
+
+{% load base_tags %}
+{% load static %}
+<!doctype html>
+
+<html lang="fa" dir="rtl">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.rtl.min.css" integrity="sha384-+qdLaIRZfNu4cVPK/PxJJEy0B0f3Ugv8i482AKY7gwXwhaCroABd086ybrVKTa0q" crossorigin="anonymous">
+    <title> دانلود و خرید کتاب صوتی با طاقچه</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.rtl.min.css" integrity="sha384-+qdLaIRZfNu4cVPK/PxJJEy0B0f3Ugv8i482AKY7gwXwhaCroABd086ybrVKTa0q" crossorigin="anonymous">
+  
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+      ul.errorlist {display:none;}
+  
+      </style>
+  
+    <script>
+
+
+      var slidePosition = 1;
+      SlideShow(slidePosition);
+      
+      // forward/Back controls
+      function plusSlides(n) {
+        SlideShow(slidePosition += n);
+      }
+      
+      //  images controls
+      function currentSlide(n) {
+        SlideShow(slidePosition = n);
+      }
+      
+      function SlideShow(n) {
+        var i;
+        var slides = document.getElementsByClassName("Containers");
+        var circles = document.getElementsByClassName("dots");
+        if (n > slides.length) {slidePosition = 1}
+        if (n < 1) {slidePosition = slides.length}
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        for (i = 0; i < circles.length; i++) {
+            circles[i].className = circles[i].className.replace(" enable", "");
+        }
+        slides[slidePosition-1].style.display = "block";
+        circles[slidePosition-1].className += " enable";
+      } 
+      
+
+    </script>
+  </head>
+  <body>
+    {% comment %} <script> alert("این صفحه یک شبیه سازی از سایت طاقچه است");</script> {% endcomment %}
+      {% comment %} ********* {% endcomment %}
+{% comment %} Navbar {% endcomment %}
+<div class="sticky-top bg-white p-1 ">
+<div calss="container">
+<nav class="navbar navbar-expand-lg navbar-light container">
+  <div class="container-fluid">
+    <a class="navbar-brand fs-1 font-weight-bold" href="{% url 'myapp:api' %}">طاقچه</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent display-4">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link "  href="{% url 'myapp:categoris' %}" ><p style="font-size:14px">دسته بندی</p></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#"> <p style="font-size:14px">بی نهایت</p></a>
+        </li>
+
+
+
+        <li class="nav-item">
+            <a class="nav-link" href="#"><p style="font-size:14px">  صوتی</p></a>
+          </li>
+          
+<li>
+        <form class="form-inline" action="{% url 'myapp:search' %}">
+            <div class="form-group mx-sm-3 mb-2">
+
+            <div class="container g-0">
+                <div class="row">
+                    <div class="col-sm-2 g-0 m-0">
+
+                        <button class="text-nowrap  border border-light  mr-5 mb-1 p-0 mt-0 display-inline"><img  class="rounded float-left" src="/media/images/search.png" width="35" height="35"></button>
+                            </div>
+                            <div class="text-nowrap col-sm-10 g-0">
+                <input type="text" name="q" class="form-control" >
+                    </div>
+                               </div>
+        </div>
+            </form>
+
+        </li>
+        <div class="position-absolute top-0 end-0">
+            <ul class="navbar-nav container mr-auto">
+                <li class="nav-item active">
+                    <h5 class= "border p-2 rounded-pill my-4" style=" font-size: 0.9rem; color:white;  background-color:white">
+                      <a href="#" class="text-decoration-none color:white text-center" style="text-align:center"> <p style="font-size:14px">نصب  طاقچه</p></a></h5>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'myapp:login' %}"> <p style="font-size:14px">&nbsp;&nbsp;&nbsp; ورود</p></a>
+                </li>
+            </ul>
+        </div>
+       
+          </div>
+        </ul>
+
+        
+  </nav> 
+</div>
+</div>
+</div>
+  {% comment %} Endnavbar {% endcomment %}
+   <div class="container">
+    <div class="row">
+        <div class="col-5">
+   {% include 'loginslide.html' %}
+        </div>
+        <div class="col-7 ">
+          <div class="align-items-center">
+<div class="py-4 fs-3" style="text-align:center;">
+این صفحه در طراحی سایت طاقچه منظور نشده است. اما موقع ورود به پروفایل کاربری در سایت٫به جای نام کاربر کلمه <b>ک</b>
+قرار گرفته است. فیلد نام کاربری می تواند همزمان با گرفتن ایمیل از کاربر گرفته شود ولی برای همسو بودن با طراحی سایت طاقچه این فیلد را جداگانه در این صفحه قرار دادیم
+
+</div>
+<div class="py-4 fs-5">لطفا نام کاربری خود را وارد کنید</div>
+
+
+    <form  method="post" action="{% url 'myapp:login4' %}" style="text-align:center;" novalidate >
+        {% csrf_token %}
+        <div class="py-4">
+       {{form.as_p}}
+        </div>
+  <div class="align-self-center p-3 mx-10 bg-secondary text-dark  rounded rounded-pill " >
+    {% comment %} <button type="submit" form="SignupForm" value="ادامه">
+    
+    <a class="text-decoration-none" href="{% url 'myapp:login2' %}"> ادامه</a>
+  
+  </button> {% endcomment %}
+
+ <input type="submit" value="ورود">
+</div>
+</form>
+{% comment %} <button  type="submit">ادامه</button> {% endcomment %}
+   </div>
+  </div>
+</div>
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+<!-- Option 2: Separate Popper and Bootstrap JS -->
+<!--
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+-->
+</body>
+</html>
+
+

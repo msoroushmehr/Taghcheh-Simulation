@@ -1,37 +1,21 @@
+{% extends 'mybase.html' %}
 {% load static %}
 {% load base_tags %}
-<body>
-    <!-- Navigation-->
-    <nav class="navbar navbar-expand-lg navbar-light"  style="text-align:right" id="mainNav">
-        <div class="container px-4 px-rg-5">
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <div class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4"  href="{% url 'myapp:api' %}">طاقچه</a>
-                 <a href="{% url 'myapp:categoris' %}"">دسته بندی</a>
-                    <a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'myapp:categorychild' 'audio' %}">صوتی</a>
-                    <a class="nav-link px-lg-3 py-3 py-lg-4" href="#"> جستجو</a>
-            </div>
-        </nav>
-        <nav class="navbar navbar-expand-lg navbar-light"  style="text-align:left" id="mainNav"> 
-                <a class="navbar-brand" style="text-align:left" href="index.html">نصب طاقچه</a>
-                <a class="navbar-brand" style="text-align:left !important;" href="{% url 'myapp:login'%}">ورود</a>
-                       </div>
-    </nav>
 
-
-
-
+{% block alarm %}{% endblock %}
+{% block body %}
 {% for cat in categoris %}
 <div style="text-align:right">
     {% if cat.mtitle %}
-    <h1 style="text-align:center">{{cat.mtitle}}</h1>
+    <h3 style="text-align:center">{{cat.mtitle}}</h3>
     {% else %}
-    <h1 style="text-align:center"> {{cat.title}}</h2>
+    <h4 style="text-align:center"> {{cat.title}}</h4>
     {% endif %}
     {% if cat.msubtitle %}
-    <h2 style="text-align:center"> {{cat.msubtitle}}</h2>
+    <h4 style="text-align:center"> {{cat.msubtitle}}</h4>
     {% endif %}
     {% if cat.mdescription %}
-    <h2 style="text-align:right"> {{cat.mdescription}}</h2>
+    <h4 style="text-align:right"> {{cat.mdescription}}</h4>
     {% endif %}
    {% for book in bookis %}
    {% if cat.title in book.category_to_list %}
@@ -45,9 +29,9 @@
             <!-- Post preview-->
             <div class="post-preview">
                     <img src="{{book.image.url}}">
-                    <h2 class="post-title" style="text-align:right;"><a href="{% url 'myapp:detail' book.slug %}">{{book.title}}</a></h2>
+                    <h3 class="post-title" style="text-align:right;"><a class='text-decoration-none' href="{% url 'myapp:detail' book.slug %}">{{book.title}}</a></h3>
                     {% if book.subtitle %}
-                    <h3 class="post-subtitle" style="text-align:right">{{book.subtitle}}</h3>
+                    <h4 class="post-subtitle" style="text-align:right">{{book.psubtitle}}</h4>
                     {% endif %}
                     
 
@@ -68,4 +52,4 @@
    {% endif %}
      {% endfor %}
 {% endfor %}
-</body>
+{% endblock %}

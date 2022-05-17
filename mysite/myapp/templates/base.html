@@ -3,12 +3,17 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+
+
+
+
+        
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>{% block  title %}title{% endblock  %} </title>
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <link rel="icon" type="image/x-icon" href="assets/img/l.png">
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
@@ -18,7 +23,13 @@
         <link href="static/css/styles.css" rel="stylesheet" />
         <link href="static/css/rtl.css" rel="stylesheet" />
 
+
+
+
+        <
+     
     </head>
+    
     <body>
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light"   id="mainNav">
@@ -27,8 +38,15 @@
                     <ul class="navbar-nav ms-auto py-4 py-lg-0">
                         <li class="nav-item" style="text-align:right; color:black"><a class="nav-link px-lg-3 py-3 py-lg-4" style="text-align:left; color:black" href="{% url 'myapp:api'%}">طاقچه</a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" style="text-align:right; color:black" href="{% url 'myapp:categoris' %}">دسته بندی</a></li>
+                        <li class="nav-item" style="text-align:right; color:black"><a class="nav-link px-lg-3 py-3 py-lg-4" style="text-align:left; color:black" href="{% url 'myapp:infinity'%}">بی نهایت</a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" style="text-align:right; color:black" href="{% url 'myapp:categorychild' 'audio' %}">صوتی</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4"  style="text-align:right; color:black" href="#"> جستجو</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4"  style="text-align:right; color:black" href="#"> 
+                            <form class="form-inline" action="{% url 'myapp:search' %}">
+                                <input type="text" name="q" class="form-control" >
+                                <button style='padding:0px; border-radius:0px; margin-right:5px'><img src="/media/images/search.png" width="20" height="20"></button>
+                            
+                            </form>
+                            </a></li>
                        
                     </ul>
                 </div>
@@ -41,14 +59,14 @@
             </div>
         </nav>
         <!-- Page Header-->
-        <header class="masthead" style="background-color: green !important; " style="text-align:right; color:black">
+        <header class="masthead" style="background-color: #80eb80 !important; " style="text-align:right; color:black">
             <div class="container position-relative px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-md-10 col-lg-8 col-xl-7" style="text-align:right; color:black">
                         <div class="site-heading" style="text-align:right; color:black">
-                            <h3 style="text-align:زثدفثق; color:black">لذت خواندن و شنیدن کتابها</h3>
+                            <h3 style="text-align:center; color:black">لذت خواندن و شنیدن کتابها</h3>
                             
-                            <span class="subheading" style="text-align:زثدفثق; color:black">دانلود قانونی بیش از ۹۰۰۰۰ کتاب متنی و صوتی</span>
+                            <span class="subheading" style="text-align:center; color:black">دانلود قانونی بیش از ۹۰۰۰۰ کتاب متنی و صوتی</span>
                             <div>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</div>
                             <button class="button button" style="text-align:right; color:black"><a href="#">نصب اپلیکیشن طاقچه</a></button>
                             

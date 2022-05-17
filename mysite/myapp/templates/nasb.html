@@ -1,0 +1,48 @@
+{% extends 'mybase.html' %}
+{% load static %}
+{% block alarm %}
+{% endblock %}
+{% block body %}
+
+<div class="container  py-4">
+    <div class="text-center">
+<p class=" text-center fs-2"> لذت خواندن و شنیدن کتاب‌ها همیشه و همه‌جا
+</p>
+<img class="img-fluid " src="https://taaghche.com/images/download/windosOs.jpg">
+<p>
+    <p class=" text-center fs-3">
+        در کدام دستگاه می‌خواهی طاقچه 
+      (<img class="img-fluid" src="{% static "assets/img/l.png" %}" style="width:2%; height:2%">)
+        را نصب کنی؟
+    </p>
+</div>
+<div class="row">
+<div class="col">
+    <img class="img-fluid" src="https://taaghche.com/images/download/Mobile-web.png">
+    <p class="fs-5">
+        <a href="#mob" class="text-decoration-none">طاقچه برای موبایل</a>
+    </p>
+</div>
+<div class="col">
+    <img class="img-fluid" src="https://taaghche.com/images/download/computer-web.png">
+    <p class="fs-5">
+        <a href="#com" class="text-decoration-none">طاقچه برای کامپیوتر</a>
+    </p>
+</div>
+<div class="col">
+
+    <img class="img-fluid" src="https://taaghche.com/images/download/Tablet-web.png">
+    <p class="fs-5">
+        <a href="#tab" class="text-decoration-none">طاقچه برای تبلت</a>
+    </p>
+</div>
+
+</div>
+<div class="py-4">
+   <p id="mob"> طاقچه در موبایل
+   </p>
+
+</div>
+</div>
+
+{% endblock %}

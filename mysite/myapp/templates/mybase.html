@@ -1,0 +1,477 @@
+{% load base_tags %}
+{% load ratings %}
+
+{% load static %}
+<!doctype html>
+
+<html lang="fa" dir="rtl">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.rtl.min.css" integrity="sha384-+qdLaIRZfNu4cVPK/PxJJEy0B0f3Ugv8i482AKY7gwXwhaCroABd086ybrVKTa0q" crossorigin="anonymous">
+    <title> 
+      دانلود و خرید کتاب صوتی با طاقچه
+    </title>
+      <link rel="shortcut icon" type="image/png" href="{% static "assets/img/l.png" %}">
+
+      <link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
+      <script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
+       {% comment %} {% block style %}  {% endblock %}          {% endcomment %}
+
+    <script>
+
+
+      var slidePosition = 1;
+      SlideShow(slidePosition);
+      
+      // forward/Back controls
+      function plusSlides(n) {
+        SlideShow(slidePosition += n);
+      }
+      
+      //  images controls
+      function currentSlide(n) {
+        SlideShow(slidePosition = n);
+      }
+      
+      function SlideShow(n) {
+        var i;
+        var slides = document.getElementsByClassName("Containers");
+        var circles = document.getElementsByClassName("dots");
+        if (n > slides.length) {slidePosition = 1}
+        if (n < 1) {slidePosition = slides.length}
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        for (i = 0; i < circles.length; i++) {
+            circles[i].className = circles[i].className.replace(" enable", "");
+        }
+        slides[slidePosition-1].style.display = "block";
+        circles[slidePosition-1].className += " enable";
+      } 
+      
+
+    </script>
+  </head>
+
+
+  <body>
+   {% block alarm %} <script> alert(" :)این صفحه یک شبیه سازی از سایت طاقچه و اولین تجربه من برای طراحی سایت است");</script> {% endblock %}
+      {% comment %} ********* {% endcomment %}
+{% comment %} Navbar {% endcomment %}
+
+<div class="sticky-top bg-white p-1 ">
+<div calss="container">
+<nav class="navbar navbar-expand-lg navbar-light container">
+  <div class="container-fluid">
+    <a class="navbar-brand fs-1 font-weight-bold" href="{% url 'myapp:apii' %}">طاقچه</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent display-4">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link "  href="{% url 'myapp:categoris' %}" ><p style="font-size:14px">دسته بندی</p></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'myapp:infinity' %}"> <p style="font-size:14px">بی نهایت</p></a>
+        </li>
+
+
+
+        <li class="nav-item">
+            <a class="nav-link" href="#"><p style="font-size:14px">  صوتی</p></a>
+          </li>
+          
+<li>
+        <form class="form-inline" action="{% url 'myapp:search' %}">
+            <div class="form-group mx-sm-3 mb-2">
+
+            <div class="container g-0">
+                <div class="row">
+                    <div class="col-sm-2 g-0 m-0">
+
+                        <button class="text-nowrap  border border-light  mr-5 mb-1 p-0 mt-0 display-inline"><img  class="rounded float-left" src="/media/images/search.png" width="35" height="35"></button>
+                            </div>
+                            <div class="text-nowrap col-sm-10 g-0">
+                <input type="text" name="q" class="form-control" >
+                    </div>
+                               </div>
+        </div>
+            </form>
+
+        </li>
+        <div class="position-absolute top-0 end-0">
+            <ul class="navbar-nav container mr-auto">
+                <li class="nav-item active">
+                    <h5 class= "border p-2 rounded-pill my-4" style=" font-size: 0.9rem; color:white;  background-color:white">
+                      <a href="{% url 'myapp:nasb' %}" class="text-decoration-none color:white text-center" style="text-align:center"> <p style="font-size:14px">نصب  طاقچه</p></a></h5>
+                </li>
+               {% if user.is_authenticated  %}
+               <li class="nav-item dropdown">
+
+                {% comment %} <a class="nav-link dropdown-toggle my-0" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                 {{username}}
+                </a> {% endcomment %}
+
+
+                <div class="btn-group">
+                  <button class="btn btn-light btn-lg" type="button">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{user.username}}
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  </button>
+                  <button type="button" class="btn btn-lg btn-warning dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span class="visually-hidden">Toggle Dropdown</span>
+                  </button>
+                 
+                <ul class="dropdown-menu my-0" style="width:300" aria-labelledby="navbarDropdownMenuLink">
+                 
+
+
+                  <li><a class="dropdown-item fs-5" href="{% url 'myapp:mybooks' %}">کتابهای من</a></li>
+      <li><a class="dropdown-item fs-5" href="{% url 'myapp:karnameh' %}">کارنامه مطالعه</a></li>
+      <li><a class="dropdown-item fs-5" href="{% url 'myapp:pretebar' %}">
+        افزایش اعتبار
+      </a></li>
+      <li><a class="dropdown-item fs-5" href="#">رویش</a></li>
+      <li>{% if request.user.is_special_user %}
+        <a class="dropdown-item fs-5" href="{% url 'myapp:buysub' %}"><span>
+          وضعیت
+          عضویت در طاقچه 
+        <br>
+        بی نهایت
+  
+      </span></a></li>
+      {% else %}
+        <a class="dropdown-item fs-5" href="{% url 'myapp:eshtbi' %}"><span>
+        عضویت در طاقچه 
+      <br>
+      بی نهایت
+
+    </span></a></li>
+    {% endif %}
+      <li><a class="dropdown-item fs-5" href="#">تاریخچه پرداختها</a></li>
+      <li><a class="dropdown-item fs-5" href="{% url 'myapp:manageq' %}">مدیریت دستگاهها</a></li>
+      <li><a class="dropdown-item fs-5" href="#">پیامهای من</a></li>
+      <li><a class="dropdown-item fs-5" href="{% url 'myapp:mylogout' %}">خروج از حساب کاربری</a></li>
+{% else %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'myapp:mysend' %}"> <p style="font-size:14px">&nbsp;&nbsp;&nbsp; ورود</p></a>
+                </li>
+
+                {% endif %}
+            </ul>
+        </div>
+       
+          </div>
+        </ul>
+
+        
+  </nav> 
+</div>
+</div>
+</div>
+{% block body %}
+
+  {% comment %} Endnavbar {% endcomment %}
+
+<div class="py-4 d-block">
+
+    <div class="container-fluid mx-0 m-0 d-block" >
+        <div class="row g-0 align-items-center" style="background-color:#00a2a4">
+           
+            <div class="col-sm-8 col-md-8  g-0 m-0 my-0">
+                <div class="visible py-4  " style="color:white; text-align:center" >
+                <h3 class="display-6 mb-4"> لذت خواندن و شنیدن کتاب ها</h3>
+                <br>
+                <h4 class="mb-4">
+دانلود بیش از ۹۰۰۰۰ کتاب متنی و صوتی
+                </h4>
+                <br>
+                <h5 class= "justify-content-between mx-auto border p-2  bg-white  rounded-pill mb-4" style="width:170px;text-align:cente; font-size: 0.9rem; color:#00a2a4"><a href="{% url 'myapp:nasb' %}" class="text-decoration-none" style="text-align:center"> نصب اپلیکیشن طاقچه</a></h5>
+                </div>
+            </div>
+            <div class="col-sm-3 col-md-3 g-0 my-0 m-1">
+                <img class="img-fluid" src="{% static 'assets/img/phone.png' %}" >
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% comment %} end header {% endcomment %}
+<div class="py-4 d-block">
+  <div class="container">
+<div class="row">
+  <div class="col">
+    <div class="row">
+      <div class="col-4">
+        <div class="mb-4">
+    <img class="img-fluid" src="https://taaghche.com/images/firstpagebanner/underbanner/NewBooks.png" >
+  </div>
+</div>
+</div>
+    <p class="fs-5">
+      
+      خرید کتاب های
+    </br>
+      جدید و پرفروش</p> 
+  </div>
+
+  <div class="col">
+    <div class="row">
+      <div class="col-4">
+        <div class="mb-4">
+
+    <img class="img-fluid" src="https://taaghche.com/images/firstpagebanner/underbanner/FreeBooks.png"  >
+      </div>
+    </div>
+    </div>
+    <p>
+      امکان دریافت
+    </br>
+
+      +۲۰ هزار کتاب رایگان</p> 
+  </div>
+  <div class="col">
+    <div class="row">
+      <div class="col-4">
+        <div class="mb-4">
+    <img class="img-fluid" src="https://taaghche.com/images/firstpagebanner/underbanner/Infinity.png" >
+  </div>
+</div>
+</div>
+    <p>امکان خرید اشتراک ماهانه
+    </br>
+
+      برای +۲۸ هزار کتاب</p>
+  </div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+<div class="container py-4">
+  {% include 'firstslide.html' %}
+</div>
+
+{% comment %} <div class="container py-4">
+  <h3>تخفیف کتاب‌های روان‌شناسی عمومی
+    <div class="row">
+      {% for b in object_list%}
+{% if "ادبیات" in b.category_to_list %}
+    <div class="col-2">
+
+{{b.title }}
+  </div>
+  {% endif %}
+  {% endfor %}
+
+</div>
+  </h3>
+</div>
+
+ {% endcomment %}
+
+ <div class="container py-4">
+  <h4>  تازه های منتخب  </h4>
+  {% most_stars %}
+</div>
+</div>
+</div>
+
+<div class="container py-4">
+    <h4>داغ‌ترین‌ کتاب‌های الکترونیک  </h4>
+    <p class="text muted lead" style="font-size:14px;">کتاب‌هایی که به تازگی پرفروش شده‌اند</p>
+    {% hot_books %}
+  </div>
+</div>
+</div>
+{% endblock %}
+{% block footer %}
+<hr>
+<section class=" container py-4">
+  <div class="row">
+    <div class="col-4">
+  <div  class="text-center py-4">
+    <img class="img-fluid text-center" src="https://taaghche.com/images/logos/logo2.svg">
+  </div>
+  <div class="fs-6">
+    طاقچه سایت و اپلیکیشن دانلود کتاب الکترونیکی و دانلود کتاب صوتی است. در طاقچه هزاران کتاب، مجله، روزنامه و کتاب گویا را می‌توانید دانلود کنید و با موبایل، تبلت و رایانه آن‌ها را بخوانید. در طاقچه کتاب‌های روانشناسی، رمان و داستان، کتاب‌های تاریخی، کتاب فلسفی و هزاران کتاب رایگان برای دانلود وجود دارد.
+  
+  
+  </div>
+    </div>
+    <div class="col">
+      <div><a class='text-dark text-decoration-none' href="#">طاقچه</a></div>
+ <div><a class='text-dark text-decoration-none' href="#"> تماس با ما
+</a>
+
+ </div>
+ <div> <a class='text-dark text-decoration-none' href="#">دربارهٔ طاقچه
+</a>
+
+ </div>
+ <div><a class='text-dark text-decoration-none' href="#"> وبلاگ طاقچه
+</a>
+
+ </div>
+  <div>  
+    <a class='text-dark text-decoration-none' href="#"> سوال‌های متداول
+    </a>
+
+    </div>
+ <div> <a class='text-dark text-decoration-none' href="#">فرصت‌های شغلی
+</a>
+
+ </div>
+
+    </div>
+    <div class="col">
+<div>   <a class='text-dark text-decoration-none' href="#">   کتاب‌های پیشنهادی
+</a>
+</div>
+  <div> <a class='text-dark text-decoration-none' href="#"> دنیای سوفی
+  </a></div>
+
+    <div> <a class='text-dark text-decoration-none' href="#"> شازده کوچولو
+    </a> </div>
+
+      <div> <a class='text-dark text-decoration-none' href="#"> غرور و تعصب
+      </a> </div>
+
+        <div> <a class='text-dark text-decoration-none' href="#">مغازه خودکشی
+        </a> </div>
+
+          <div>  <a class='text-dark text-decoration-none' href="#">کتاب اثر مرکب
+          </a></div>
+
+            <div> <a class='text-dark text-decoration-none' href="#">کتاب بیشعوری
+            </a> </div>
+
+            <div> <a class='text-dark text-decoration-none' href="#">وقتی نیچه گریست
+            </a></div>
+
+    </div>
+  
+    <div class="col">
+      <div><a class='text-dark text-decoration-none' href="#"></a></div>
+
+      <div><a class='text-dark text-decoration-none' href="#"> وبلاگ طاقچه
+</a></div>
+      <div><a class='text-dark text-decoration-none' href="#"> رمان جدید
+فلورانس اسکاول شین
+</a></div>
+      <div><a class='text-dark text-decoration-none' href="#"> 
+زندگی‌نامه و آثار سعدی
+</a></div>
+      <div><a class='text-dark text-decoration-none'  href="#"> 
+کتاب‌های اطلاعات عمومی
+</a></div>
+      <div><a class='text-dark text-decoration-none' href="#"> 
+زندگی‌نامه فردوسی و شاهنامه
+</a></div>
+      <div><a class='text-dark text-decoration-none' href="#"> 
+زندگی‌نامه و اشعار حافظ شیرازی
+</a></div>
+      <div><a class='text-dark text-decoration-none' href="#"> 
+زندگی‌نامه و اشعار سهراب سپهری
+</a></div>
+      <div><a class='text-dark text-decoration-none' href="#"> 
+        معرفی کتاب‌های مشابه ملت عشق
+
+</a></div>
+
+
+
+    </div>
+    <div class="col">
+      <div><a class='text-dark text-decoration-none' href="#">دسته بندی پیشنهادی</a></div>
+      <div><a class='text-dark text-decoration-none' href="#">رمان عاشقانه</a></div>
+      <div><a class='text-dark text-decoration-none' href="#">کتاب‌های علمی</a></div>
+      <div><a class='text-dark text-decoration-none' href="#">کتاب‌های صوتی</a></div>
+      <div><a class='text-dark text-decoration-none' href="#">کتاب‌های پزشکی</a></div>
+      <div><a class='text-dark text-decoration-none' href="#">کتاب صوتی رایگان</a></div>
+      <div><a class='text-dark text-decoration-none' href="#">کتاب‌های انگیزشی</a></div>
+      <div><a class='text-dark text-decoration-none' href="#">کتاب داستان کودکانه</a></div>
+      <div><a class='text-dark text-decoration-none' href="#">کتاب درسی و کمک‌درسی</a></div>
+
+    </div>
+  
+  
+  </div>
+  </section>
+<hr>
+<footer class="py-4">
+<div class="container">
+  <div class="row">
+<div class="col-9">
+  <p>© کلیه حقوق این سایت محفوظ و متعلق به فروشگاه کتاب الکترونیک طاقچه است.
+
+  </p>
+  <div>
+        <a  class='text-dark text-decoration-none' href="#">    ورود ناشران
+        </a>
+        &nbsp
+
+        <a class='text-dark text-decoration-none' href="#"> شرایط استفاده </a>
+        &nbsp
+
+        <a  class='text-dark text-decoration-none' href="#"> سوالات متداول </a>
+        &nbsp
+
+        <a class='text-dark text-decoration-none'  href="#"> ارتباط با پشتیبانی </a>
+
+
+  </div>
+</div>
+<div class="col-3">
+
+<div>
+{% comment %} <img class="img-fluid" src="https://taaghche.com/images/socialmedia/bale-f.svg"> {% endcomment %}
+<img class="img-fluid" src="https://taaghche.com/images/socialmedia/telegram-f.svg">
+<img class="img-fluid" src="https://taaghche.com/images/socialmedia/youtube-f.svg">
+<img class="img-fluid" src="https://taaghche.com/images/socialmedia/linkedin-f.svg">
+<img class="img-fluid" src="https://taaghche.com/images/socialmedia/twitter-f.svg">
+<img class="img-fluid" src="https://taaghche.com/images/socialmedia/aparat-f.svg">
+<img class="img-fluid" src="https://taaghche.com/images/socialmedia/instagram-f.svg">
+<img class="https://taaghche.com/images/socialmedia/map-f.svg">
+  </div>
+  <div>
+
+</div>
+
+
+</div>
+{% endblock %}
+
+<div class=" fixed-bottom pt-4">
+  <div class="p-3 bg-secondary text-white text-center fs-5">©Taaghche.com v3.55.1
+  </div>
+</div>
+
+</footer>
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    -->
+  </body>
+</html>
+
+

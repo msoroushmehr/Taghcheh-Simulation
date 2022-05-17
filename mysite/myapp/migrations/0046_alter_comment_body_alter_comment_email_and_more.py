@@ -26,12 +26,5 @@ class Migration(migrations.Migration):
             name='name',
             field=models.CharField(max_length=80, verbose_name='نام'),
         ),
-        migrations.CreateModel(
-            name='Bview',
-            fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('IPAddres', models.GenericIPAddressField(default='45.243.82.169')),
-                ('book', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='myapp.book')),
-            ],
-        ),
+        
     ]

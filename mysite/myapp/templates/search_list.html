@@ -1,0 +1,50 @@
+{% extends 'mybase.html' %}
+{% load static %}
+{% block alarm %}{% endblock %}
+{% block body %}
+<h3 class ="alert alert-primary text-center">جستجو:{{search}}</h3>
+<div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-7">
+            <!-- Post preview-->
+            <div class="post-preview">
+                <a href="#"> </a>
+    {% for book  in object_list %}
+    
+    
+                        <img src="{{book.image.url}}">
+                        <h2 class="post-title">{{book.title}}</h2>
+                <h3>تعداد بازدیدها: {{book.hits.count}} </h3>
+                        {% if book.pric == 0 %}
+                        <h3 style="text-align:left" ><button type="button" class="btn btn-success">رایگان</button>
+                        </h3>
+                        {% else %}
+
+                        <h3 style="text-align:left"> قیمت:{{book.pprice}} تومان</h3>
+                
+                        <h3 style="text-align:left"><button type="button" class="btn btn-success"><a class='text-light text-decoration-none' href="#">خرید</a></button></h3>
+                        <h3 style="text-align:left"><button type="button" class="btn btn-success"><a class='text-light text-decoration-none' href="{% url 'myapp:reinfinity' %}">دریافت از طاقچه بی نهایت</a></button></h3>
+
+                        {% endif %}
+                        {% if book.disscount > 0 %}
+                       درصد تخفیف {{book.disscount }}
+                        {% endif %}
+                        {% if book.subtitle %}
+                        <h3 class="post-subtitle">{{book.psubtitle}}</h3>
+                        {% endif %}
+                        <p class="post-meta">
+                            نویسنده:                           {{book.author}}
+                                                   </p>
+                        <p  style="text-align:justify">{{book.pdescription|linebreaks}}</hp>
+                            <hr>
+
+                               </div>
+                              
+                                <!-- Divider-->
+                <!-- Pager-->
+
+                {% endfor %}
+                               </div>
+        </div>
+    </div>
+{% endblock %}

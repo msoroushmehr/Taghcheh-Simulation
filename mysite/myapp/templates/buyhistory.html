@@ -1,0 +1,100 @@
+
+
+{% extends 'mybase.html' %}
+{% load static %}
+{% block alarm %}{% endblock %}
+{% block body %}
+<div class="container py-4">
+<h3> تاریخچه پرداخت ها</h3>
+<div class="row py-4">
+<div class="col-1">
+    #
+</div>
+<div class="col-2">
+    تاریخ
+</div>
+<div class="col-2">
+خرید
+</div>
+
+<div class="col-2">
+مبلغ
+
+</div>
+
+<div class="col-1">
+    از طریق
+
+</div>
+<div class="col-2">
+    وضعیت
+
+</div>
+<div class="col-1">
+    شناسه خرید
+
+</div>
+<div class="col-1">
+    تخفیف
+
+</div>
+
+<hr>
+
+</div>
+{% for buy in buys %}
+{% comment %} /{% if buy.user == user %} {% endcomment %}
+
+{% for i in num %}
+<div class="row">
+    <div class="col-1">
+        {{i}}+1
+    </div>
+    <div class="col-2">
+{{buy.jtime}}       
+    </div>
+    <div class="col-2">
+        {% if buy.booki_to_str %}
+        خرید
+        کتاب
+   <p class ="text-success"> {{buy.booki_to_str}}</p>
+   {% else %}
+   {{ buy.msgbuy}}
+   {% endif %}
+
+    </div>
+    
+    <div class="col-2">
+    </div>
+    
+    <div class="col-1">
+    بانک ملی
+    </div>
+    <div class="col-2">
+        -
+    
+    </div>
+    <div class="col-1">
+    
+    </div>
+    <div class="col-1">
+    
+    </div>
+    <hr>
+
+
+    {% endfor %}
+    {% comment %} {% endif %} {% endcomment %}
+
+    {% endfor %}
+
+    </div>
+    
+    
+
+
+
+
+</div>
+{% endblock %}
+{%block footer %}{% endblock%}

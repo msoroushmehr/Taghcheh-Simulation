@@ -11,6 +11,17 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+import datetime
+from django.conf import settings
+from django.utils.timezone import make_aware
+
+naive_datetime = datetime.datetime.now()
+naive_datetime.tzinfo  # None
+
+settings.TIME_ZONE  # 'UTC'
+aware_datetime = make_aware(naive_datetime)
+aware_datetime.tzinfo  # <UTC>
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -38,7 +49,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'myapp',
-    'jalaliconv'
+    'jalaliconv',
+    'star_ratings',
+    # 'rest_framework',
+
 ]
 
 MIDDLEWARE = [
@@ -49,7 +63,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    #'myapp.middleware.SaveIPAddressMiddleware',
+    'myapp.middleware.SaveMyIPAddressMiddleware',
 ]
 
 ROOT_URLCONF = 'mysite.urls'
@@ -131,4 +145,20 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 
-LOGIN_REDIRECT_URL = 'myapp:profile'
+LOLOGIN_REDIRECT_URL = 'myapp:login3'
+LOGOUT_REDIRECT_URL = 'myapp:apii'
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'm.soroushmehr@gmail.com'
+EMAIL_HOST_PASSWORD = 'YaRahman*1*'
+EMAIL_PORT = 587
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+EMAIL_USE_SSL = False
+
+
+AUTHENTICATION_BACKENDS = (
+        'django.contrib.auth.backends.ModelBackend',
+    )

@@ -2,11 +2,11 @@ from tabnanny import verbose
 from telnetlib import IP
 from unicodedata import category
 from django.contrib import admin
-from .models import Book, Publication, Category
+from .models import Book, MyIPAddress, Publication, Category
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from .models import User
-from .models import  Comment
+from .models import  Comment, MyIPAddress
 
 
 verbose_name = "طاقچه"
@@ -40,9 +40,14 @@ class BookAdmin(admin.ModelAdmin):
 admin.site.register(Book, BookAdmin)
 
 
+# class UserAdmin(admin.ModelAdmin):
+#     list_display = ('special_user', 'is_special_user')
 
+class UserAdmin(admin.ModelAdmin):
+    list_display = ['username', 'mybags']
+
+   
 admin.site.register(User, UserAdmin)
-
 
 
 class CommentAdmin(admin.ModelAdmin):
@@ -58,3 +63,17 @@ class CommentAdmin(admin.ModelAdmin):
 admin.site.register(Comment, CommentAdmin)
 
 
+
+class MyIPAddressAdmin(admin.ModelAdmin):
+    list_display =('ip_address', 'name' )  
+    
+admin.site.register(MyIPAddress, MyIPAddressAdmin)
+
+
+
+
+
+
+    
+    
+    

@@ -1,0 +1,73 @@
+ {% extends 'mybase.html' %}
+ {% load static %}
+ {% comment %} {% block style %}
+ <style>
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+    
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+    </style>
+    
+ {% endblock %} {% endcomment %}
+ {% block alarm %}{% endblock %}
+ {%block body %}
+<div class="container py-4">
+    <div class="row ">
+      <div class="col-3 btn btn-secondary">کتابهای الکترونیک</div>
+      
+      <div class="col-3 btn btn-secondary">کتابهای صوتی</div>
+        <div class="col-3 btn btn-secondary">نشان شده ها</div>
+
+            <div class="col-3 btn btn-secondary">طاقچه بی نهایت</div>
+
+          
+    
+</div>
+<div class="row ">
+  <div class="col-3 btn btn-light">
+
+    {% if i   %}
+    {% for  b in list1  %}
+    {% for c in list2 %}
+  {%if c != 'audio'%}
+  <a href="{% url 'myapp:detailbuy' c %}">{{b}}  </a>
+  {% endif %}
+
+  {% endfor %}
+  {% endfor %}
+{% endif %}
+</div>
+<div class="col-3 btn btn-light">
+  {% if i   %}
+  {% for  b in list1  %}
+  {% for c in list2 %}
+{%if c == 'audio'%}
+<a href="{% url 'myapp:detailbuy' c %}">{{b}}  </a>
+{% endif %}
+
+{% endfor %}
+{% endfor %}
+{% endif %}
+
+</div>
+<div class="col-3 btn btn-light">
+
+</div>
+
+<div class="col-3 btn btn-light">
+
+</div>
+  
+ {% endblock %}
+ {% block footer %}{% endblock %}

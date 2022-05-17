@@ -1,0 +1,35 @@
+{% extends 'mybase.html' %}
+{% load static %}
+{% comment %} {% block style %}
+<style>
+   table {
+     font-family: arial, sans-serif;
+     border-collapse: collapse;
+     width: 100%;
+   }
+   
+   td, th {
+     border: 1px solid #dddddd;
+     text-align: left;
+     padding: 8px;
+   }
+   
+   tr:nth-child(even) {
+     background-color: #dddddd;
+   }
+   </style>
+   
+{% endblock %} {% endcomment %}
+{% block alarm %}{% endblock %}
+{%block body %}
+<div class="container py-4">
+
+در چنین صفحه ای در سایت اصلی شما به متن کتاب الکترونیک خریداری شده خود یعنی کتاب 
+{% for book in books %}
+<a href="{% url 'myapp:detail' book.slug %}" >{{book.title}}</a>
+{% endfor %}
+دسترسی دارید.
+</div>
+ 
+{% endblock %}
+{% block footer %}{% endblock %}

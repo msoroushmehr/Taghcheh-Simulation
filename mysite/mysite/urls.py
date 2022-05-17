@@ -17,8 +17,25 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.auth.views import PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView
+
+from myapp.views import  Profile
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('myapp.urls')),
+    path('mypass', PasswordResetView.as_view(), name="password_reset"),
+path('mydone', PasswordResetDoneView.as_view(), name='password_reset_done' ),
+    path(
+        "reset/<uidb64>/<token>/",
+        PasswordResetConfirmView.as_view(),
+        name="password_reset_confirm"
+    ),
+    path('ratings/', include('star_ratings.urls', namespace='ratings')),
+
+
+
+
+# path('signup', signup, name='signup'),
+path('profile', Profile.as_view(), name='profile'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
