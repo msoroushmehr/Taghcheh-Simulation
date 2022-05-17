@@ -14,7 +14,7 @@ from pathlib import Path
 import datetime
 from django.conf import settings
 from django.utils.timezone import make_aware
-
+from decouple import config
 naive_datetime = datetime.datetime.now()
 naive_datetime.tzinfo  # None
 
@@ -31,8 +31,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-!*r$y&j3$6uv4o#t%0k5p@)2#nnoc#-flp#jf0v+(dmvc0e#(#'
-
+SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -150,11 +149,11 @@ LOGOUT_REDIRECT_URL = 'myapp:apii'
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST = config('EMAIL_HOST')
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'm.soroushmehr@gmail.com'
-EMAIL_HOST_PASSWORD = ''
-EMAIL_PORT = 587
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+EMAIL_PORT = config('EMAIL_PORT')
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 EMAIL_USE_SSL = False
 
